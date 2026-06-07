@@ -1,3 +1,11 @@
 spring:
   application:
     name: web3-project
+
+server:
+  port: 7001
+
+coingecko:
+    api:
+      key: "${COINGECKO_KEY}"
+      uri: "https://api.coingecko.com/api/v3"
