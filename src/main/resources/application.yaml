@@ -6,6 +6,27 @@ server:
   port: 7001
 
 coingecko:
-    api:
-      key: "${COINGECKO_KEY}"
-      uri: "https://api.coingecko.com/api/v3"
+  api:
+    key: "${COINGECKO_KEY}"
+    uri: "https://api.coingecko.com/api/v3"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
+  tracing:
+    sampling:
+      probability: 1.0
+
+otel:
+  service:
+    name: ${spring.application.name}
+  exporter:
+    otlp:
+      endpoint: http://localhost:4317
+      protocol: grpc
+
+logging:
+  level:
+    org.zalando.logbook: TRACE
