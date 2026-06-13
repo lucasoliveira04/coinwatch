@@ -1,5 +1,6 @@
 package com.web3.domain.service;
 
+import com.web3.domain.service.dto.CoinPriceResponse;
 import com.web3.infra.properties.CoingeckoProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -21,7 +22,7 @@ public class CoinGeckoService {
                 .build();
     }
 
-    public Mono<Map> getPrice(String coinId, String currency) {
+    public Mono<CoinPriceResponse> getPrice(String coinId, String currency) {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/simple/price")
@@ -29,6 +30,6 @@ public class CoinGeckoService {
                         .queryParam("vs_currencies", currency)
                         .build())
                 .retrieve()
-                .bodyToMono(Map.class);
+                .bodyToMono(CoinPriceResponse.class);
     }
 }
