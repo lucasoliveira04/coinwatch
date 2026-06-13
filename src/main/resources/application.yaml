@@ -2,6 +2,7 @@ spring:
   application:
     name: web3-project
 
+
 server:
   port: 7001
 

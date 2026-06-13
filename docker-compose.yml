@@ -11,6 +11,7 @@ services:
       - "5433:5432"
     volumes:
       - coinwatch-db-data:/var/lib/postgresql/data
+      - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U coinwatch"]
       interval: 5s
